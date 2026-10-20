@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --breakpoint-tablet: 43.8125rem;
+
+  --color-paper: #f2f1eb;
+  --color-ink: #152c43;
+  --color-ink-deep: #182e41;
+  --color-muted: #53616c;
+  --color-rule: #c7ccc8;
+  --color-rule-strong: #bfc8cd;
+  --color-signal: #3572c2;
+  --color-signal-light: #c3dafa;
+  --color-lime: #e7edb2;
+  --color-lime-soft: #e2e8b4;
+  --color-focus: #c97722;
+
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: Consolas, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@utility wrap {
+  width: calc(100% - 36px);
+  margin-inline: auto;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @variant tablet {
+    width: min(1200px, calc(100% - 80px));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 65px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 5px;
+  }
+
+  section {
+    scroll-margin-top: 70px;
+  }
 }
