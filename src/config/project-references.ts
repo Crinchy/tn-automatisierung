@@ -1,7 +1,9 @@
+import { Camera, Crosshair, Wrench } from "lucide-react";
 import type { ProjectReference } from "@/types/project-reference";
 
 export const PROJECT_REFERENCES: ProjectReference[] = [
   {
+    icon: Wrench,
     topic: "Inbetriebnahme & Betreuung",
     title: "Colorist-Anlage USA",
     description:
@@ -9,6 +11,7 @@ export const PROJECT_REFERENCES: ProjectReference[] = [
     technologies: ["TIA Portal", "Inbetriebnahme", "Support"],
   },
   {
+    icon: Crosshair,
     topic: "Programmarchitektur & Motion",
     title: "Laser-Portal-System",
     description:
@@ -16,6 +19,7 @@ export const PROJECT_REFERENCES: ProjectReference[] = [
     technologies: ["SCL", "Motion", "Lasersensorik"],
   },
   {
+    icon: Camera,
     topic: "Vision & Anlagenintegration",
     title: "Palettenprüfung",
     description:

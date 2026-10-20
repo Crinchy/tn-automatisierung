@@ -28,13 +28,224 @@
   }
 }
 
+@keyframes line-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/*
+ * One timeline for the TN mark, so no second animation's fill state can override it:
+ * hidden while waiting, the outline traces from the start point, then hands over to the fill.
+ * The dash starts just past the path start (1.001 with a 1-long dash and 2-long gap),
+ * and the stroke stays transparent until tracing begins, so no dot shows on load.
+ */
+@keyframes mark-draw {
+  0% {
+    stroke-dashoffset: 1.001;
+    stroke-opacity: 0;
+    fill-opacity: 0;
+  }
+
+  1% {
+    stroke-dashoffset: 1.001;
+    stroke-opacity: 1;
+    fill-opacity: 0;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  65% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 1;
+    fill-opacity: 0;
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 0;
+    fill-opacity: 1;
+  }
+}
+
+@keyframes menu-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/*
+ * Wipes the mobile menu down on open. A keyframe animation renders its first frame from the start state,
+ * which @starting-style does not reliably do for a dialog entering the top layer; closing stays a transition.
+ */
+@utility animate-menu-reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: menu-reveal 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@utility animate-line-rise {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: line-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms)
+      both;
+  }
+}
+
+@utility animate-fade-up {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fade-up 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms)
+      both;
+  }
+}
+
+/*
+ * Traces the TN mark as an outline, then fills it in.
+ * The stroke width is in SVG units: 1.227 and 0.71 render 2px at the hero's mark sizes
+ * (scale 1.63 below the tablet breakpoint, 2.815 above), matching the 2px section rules.
+ */
+@utility animate-mark-draw {
+  @media (prefers-reduced-motion: no-preference) {
+    stroke: currentColor;
+    stroke-dasharray: 1 2;
+    stroke-width: 1.227;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    animation: mark-draw 2400ms linear 300ms both;
+
+    @variant tablet {
+      stroke-width: 0.71;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+@keyframes reveal-clip {
+  from {
+    clip-path: inset(-0.2em -0.2em 100% -0.2em);
+    transform: translateY(0.4em);
+  }
+
+  to {
+    clip-path: inset(-0.2em);
+  }
+}
+
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-45deg);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(80px);
+  }
+
+  to {
+    transform: translateY(-80px);
+  }
+}
+
+/*
+ * Fade-ins that play once when an element enters the viewport.
+ * The Reveal component sets data-reveal-state through React, so hydration never sees foreign attributes:
+ * "hidden" only for content below the fold after mount, then "visible" to play the animation.
+ */
+@utility animate-reveal-up {
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-reveal-state="hidden"] {
+      opacity: 0;
+    }
+
+    &[data-reveal-state="visible"] {
+      animation: reveal-up 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms)
+        both;
+    }
+  }
+}
+
+@utility animate-reveal-clip {
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-reveal-state="hidden"] {
+      opacity: 0;
+    }
+
+    &[data-reveal-state="visible"] {
+      animation: reveal-clip 1000ms cubic-bezier(0.16, 1, 0.3, 1)
+        var(--delay, 0ms) both;
+    }
+  }
+}
+
+@utility animate-tile-in {
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-reveal-state="hidden"] {
+      opacity: 0;
+    }
+
+    &[data-reveal-state="visible"] {
+      animation: tile-in 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms)
+        both;
+    }
+  }
+}
+
+@utility animate-drift {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: drift linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+/* Draws a section's top rule as it scrolls into view */
+@utility animate-rule-draw {
+  transform-origin: left;
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: rule-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+  }
+}
+
 @layer base {
   html {
     scroll-padding-top: 104px;
+    /* Set by the mobile menu while it locks scrolling, so the page keeps its width without the scrollbar */
+    padding-right: var(--scrollbar-compensation);
   }
 
+  /* Smooth only after a link click focuses the page, so reloads and restored positions jump instantly */
   @media (prefers-reduced-motion: no-preference) {
-    html {
+    html:focus-within {
       scroll-behavior: smooth;
     }
   }
@@ -45,6 +256,15 @@
     font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.6;
+    /* Long German words would otherwise push narrow viewports into horizontal scrolling */
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  img,
+  svg {
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   ::selection {
@@ -66,9 +286,80 @@
     touch-action: manipulation;
   }
 
+  a[href],
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
   a:focus-visible,
   button:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 5px;
   }
+}
+
+/*
+ * Page transitions through React's <ViewTransition> (see PageTransition.tsx).
+ * Going deeper slides content left, going back home slides it right; the header stays put.
+ */
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes page-slide {
+  from {
+    translate: var(--slide-offset);
+  }
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+/* Reduced motion keeps the browser's default crossfade without any sliding */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(.nav-forward),
+  ::view-transition-old(.nav-back) {
+    animation:
+      150ms ease-in both reverse page-fade,
+      400ms cubic-bezier(0.65, 0, 0.35, 1) both reverse page-slide;
+  }
+
+  ::view-transition-new(.nav-forward),
+  ::view-transition-new(.nav-back) {
+    animation:
+      250ms ease-out 150ms both page-fade,
+      400ms cubic-bezier(0.16, 1, 0.3, 1) both page-slide;
+  }
+
+  ::view-transition-old(.nav-forward) {
+    --slide-offset: -60px;
+  }
+
+  ::view-transition-new(.nav-forward) {
+    --slide-offset: 60px;
+  }
+
+  ::view-transition-old(.nav-back) {
+    --slide-offset: 60px;
+  }
+
+  ::view-transition-new(.nav-back) {
+    --slide-offset: -60px;
+  }
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
 }
