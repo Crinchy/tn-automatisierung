@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Archivo } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Nestmann Automatisierung",
@@ -9,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="de">
+    <html lang="de" className={`${archivo.variable} antialiased`}>
       <body>{children}</body>
     </html>
   );

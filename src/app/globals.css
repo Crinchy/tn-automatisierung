@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
+@custom-variant hocus (&:hover,
+&:focus-visible);
+
 @theme {
   --breakpoint-tablet: 43.8125rem;
 
   --color-paper: #f2f1eb;
   --color-ink: #152c43;
-  --color-ink-deep: #182e41;
   --color-muted: #53616c;
   --color-rule: #c7ccc8;
-  --color-rule-strong: #bfc8cd;
   --color-signal: #3572c2;
   --color-signal-light: #c3dafa;
   --color-lime: #e7edb2;
   --color-lime-soft: #e2e8b4;
   --color-focus: #c97722;
 
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-mono: Consolas, monospace;
+  --font-sans: var(--font-archivo), Arial, Helvetica, sans-serif;
 }
 
 @utility wrap {
@@ -28,17 +28,9 @@
   }
 }
 
-@utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 1.6;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
 @layer base {
   html {
-    scroll-padding-top: 65px;
+    scroll-padding-top: 104px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -55,11 +47,18 @@
     line-height: 1.6;
   }
 
+  ::selection {
+    background-color: var(--color-signal);
+    color: white;
+  }
+
   h1,
   h2,
   h3 {
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
   a,
@@ -71,9 +70,5 @@
   button:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 5px;
-  }
-
-  section {
-    scroll-margin-top: 70px;
   }
 }
