@@ -8,6 +8,10 @@ import content from "@/content/de.json";
 const TAG_DELAY_START_MS = 250;
 const TAG_DELAY_STEP_MS = 80;
 
+// Phones show each photo edge to edge, with the text panel overlapping it from alternating sides
+const TEXT_PANEL_CLASS_NAME =
+  "relative max-tablet:-mt-14 max-tablet:bg-white max-tablet:pt-6 max-tablet:group-odd/project:-ml-4.5 max-tablet:group-odd/project:mr-8 max-tablet:group-odd/project:pr-6 max-tablet:group-odd/project:pl-4.5 max-tablet:group-even/project:-mr-4.5 max-tablet:group-even/project:ml-8 max-tablet:group-even/project:pr-4.5 max-tablet:group-even/project:pl-6 lg:col-span-5";
+
 export default function ReferencesSection() {
   return (
     <section id="referenzen" className="bg-white">
@@ -26,11 +30,11 @@ export default function ReferencesSection() {
           {PROJECT_REFERENCES.map((reference) => (
             <article
               key={reference.title}
-              className="group/project grid items-center gap-8 lg:grid-cols-12 lg:gap-16"
+              className="group/project grid items-center tablet:gap-8 lg:grid-cols-12 lg:gap-16"
             >
               <Reveal
                 as="div"
-                className="relative aspect-16/10 animate-reveal-up overflow-clip rounded-xs bg-signal lg:col-span-7 lg:group-even/project:order-2"
+                className="relative -mx-4.5 aspect-4/3 animate-reveal-up overflow-clip bg-signal tablet:mx-0 tablet:aspect-16/10 tablet:rounded-xs lg:col-span-7 lg:group-even/project:order-2"
               >
                 {/* The tint lives on the moving layer too, since its transform isolates the image's blend */}
                 <Parallax className="absolute inset-x-0 -inset-y-[45%] bg-signal">
@@ -43,7 +47,7 @@ export default function ReferencesSection() {
                     sizes="(min-width: 1024px) 55vw, 100vw"
                   />
                 </Parallax>
-                <span className="absolute bottom-4 left-4 grid size-12 place-items-center rounded-xs bg-lime text-ink tablet:bottom-6 tablet:left-6">
+                <span className="absolute top-4 left-4 grid size-12 place-items-center rounded-xs bg-lime text-ink tablet:top-auto tablet:bottom-6 tablet:left-6">
                   <reference.icon
                     className="size-6"
                     strokeWidth={1.75}
@@ -51,7 +55,7 @@ export default function ReferencesSection() {
                   />
                 </span>
               </Reveal>
-              <div className="lg:col-span-5">
+              <div className={TEXT_PANEL_CLASS_NAME}>
                 <Reveal
                   as="p"
                   className="mb-4 animate-reveal-up text-sm font-semibold tracking-[0.08em] text-signal uppercase [--delay:80ms]"

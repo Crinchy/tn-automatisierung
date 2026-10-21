@@ -51,7 +51,8 @@ export default function Hero() {
             fetchPriority="high"
           />
         </Parallax>
-        <div className="absolute inset-0 bg-linear-to-r from-signal via-signal/85 to-signal/10" />
+        {/* Phones fade the photo in from the top, since the text spans their full width */}
+        <div className="absolute inset-0 bg-linear-to-t from-signal via-signal/85 to-signal/10 tablet:bg-linear-to-r" />
       </div>
       <div className="wrap relative pt-28 pb-10 tablet:pt-52 tablet:pb-16 lg:pt-60">
         <TnMark

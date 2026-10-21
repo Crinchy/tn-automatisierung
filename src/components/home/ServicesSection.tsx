@@ -1,29 +1,27 @@
 import Reveal from "@/components/layout/Reveal";
 import { SERVICES } from "@/config/services";
 import content from "@/content/de.json";
+import interpolate from "@/utils/interpolate";
 import SectionLayout from "./SectionLayout";
+import ServicesCarousel from "./ServicesCarousel";
 
-// Separator lines sit between services only; the second service starts the second column from tablet up
-const SEPARATOR_CLASS_NAME =
-  "absolute inset-x-0 top-0 h-px animate-rule-draw bg-rule";
-const MOBILE_SEPARATOR_CLASS_NAME = `${SEPARATOR_CLASS_NAME} tablet:hidden`;
+const CARD_CLASS_NAME =
+  "relative flex w-[85%] min-w-0 shrink-0 snap-start flex-col rounded-xs border border-rule bg-white p-6 tablet:w-auto tablet:rounded-none tablet:border-0 tablet:bg-transparent tablet:block tablet:px-0 tablet:py-14";
+
+function counterNumber(value: number): string {
+  return String(value).padStart(2, "0");
+}
 
 export default function ServicesSection() {
   return (
     <SectionLayout id="leistungen" title={content.services.title}>
-      <div className="grid tablet:grid-cols-2 tablet:gap-x-16">
+      <ServicesCarousel>
         {SERVICES.map((service, index) => (
-          <article
-            key={service.label}
-            className="relative min-w-0 py-12 tablet:py-14"
-          >
-            {index > 0 && (
+          <article key={service.label} className={CARD_CLASS_NAME}>
+            {/* Separator lines sit between grid rows only, so the second service has none */}
+            {index > 1 && (
               <div
-                className={
-                  index === 1
-                    ? MOBILE_SEPARATOR_CLASS_NAME
-                    : SEPARATOR_CLASS_NAME
-                }
+                className="absolute inset-x-0 top-0 hidden h-px animate-rule-draw bg-rule tablet:block"
                 aria-hidden="true"
               />
             )}
@@ -57,9 +55,19 @@ export default function ServicesSection() {
             >
               {service.description}
             </Reveal>
+            <Reveal
+              as="p"
+              className="mt-auto animate-reveal-up pt-8 text-sm font-semibold whitespace-nowrap text-muted tabular-nums [--delay:250ms] tablet:hidden"
+              aria-hidden="true"
+            >
+              {interpolate(content.services.counter, {
+                current: counterNumber(index + 1),
+                total: counterNumber(SERVICES.length),
+              })}
+            </Reveal>
           </article>
         ))}
-      </div>
+      </ServicesCarousel>
     </SectionLayout>
   );
 }

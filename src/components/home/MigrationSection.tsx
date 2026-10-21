@@ -30,7 +30,7 @@ export default function MigrationSection() {
             quality={25}
           />
         </Parallax>
-        <div className="absolute inset-0 bg-linear-to-r from-ink via-ink/85 to-ink/40" />
+        <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/85 to-ink/40 tablet:bg-linear-to-r" />
       </div>
       <div className="wrap relative grid gap-14 py-28 tablet:py-36 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20 lg:py-44">
         <div>

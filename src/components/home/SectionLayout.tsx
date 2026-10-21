@@ -23,7 +23,8 @@ export default function SectionLayout({
       >
         {title}
       </Reveal>
-      <div>
+      {/* min-w-0 keeps wide scrolling content, like the services carousel, from widening the grid column */}
+      <div className="min-w-0">
         <div className="h-0.5 animate-rule-draw bg-ink" aria-hidden="true" />
         {children}
       </div>

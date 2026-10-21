@@ -66,6 +66,7 @@
   },
   "services": {
     "title": "Steuerung. Bewegung.\nAlles im Zusammenspiel.",
+    "counter": "{current} / {total}",
     "items": {
       "tiaPortal": {
         "label": "TIA Portal",
