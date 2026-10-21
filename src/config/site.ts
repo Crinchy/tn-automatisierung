@@ -1,4 +1,4 @@
-export const SITE_URL = "https://tn-automatisierung.de";
+export const SITE_URL = "https://tn-automatisierung.lukas-buettner.workers.dev";
 
 export const SITE_NAME = "TN Automatisierung";
 
