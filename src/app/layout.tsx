@@ -11,6 +11,7 @@ import {
   SITE_URL,
   THEME_COLOR,
 } from "@/config/site";
+import content from "@/content/de.json";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -29,21 +30,8 @@ export const metadata: Metadata = {
   authors: [{ name: LEGAL_DETAILS.ownerName, url: SITE_URL }],
   creator: LEGAL_DETAILS.ownerName,
   publisher: LEGAL_DETAILS.businessName,
-  keywords: [
-    "Industrieautomatisierung",
-    "SPS-Programmierung",
-    "TIA Portal",
-    "Programmarchitektur",
-    "Retrofit",
-    "S7-300",
-    "S7-400",
-    "Vision-Systeme",
-    "Bildverarbeitung",
-    "Roboterintegration",
-    "Inbetriebnahme",
-    "Sondermaschinenbau",
-  ],
-  category: "Industrieautomatisierung",
+  keywords: content.site.keywords,
+  category: content.site.category,
   openGraph: SHARED_OPEN_GRAPH,
   twitter: {
     card: "summary_large_image",

@@ -1,44 +1,45 @@
-import { Camera, Crosshair, Wrench } from "lucide-react";
+import { Camera, Crosshair, type LucideIcon, Wrench } from "lucide-react";
+import content from "@/content/de.json";
 import type { ProjectReference } from "@/types/project-reference";
 
-export const PROJECT_REFERENCES: ProjectReference[] = [
-  {
+type ReferenceKey = keyof typeof content.references.items;
+
+type ReferenceAssets = {
+  icon: LucideIcon;
+  imageSrc: string;
+};
+
+// Icon and photo per project, in display order; the texts live in content/de.json under the same keys.
+// The photos are Unsplash stock photos until real project photos are available.
+const REFERENCE_ASSETS: Record<ReferenceKey, ReferenceAssets> = {
+  // Aleksandr Lyaptsev, unsplash.com/photos/q0Jo_J5YxHY
+  colorist: {
     icon: Wrench,
-    topic: "Inbetriebnahme & Betreuung",
-    title: "Colorist-Anlage USA",
-    description:
-      "Inbetriebnahme, Fehlersuche und Optimierung einer Colorist-Anlage in den USA. Anschließender Remote-Support bei Anpassungen und Erweiterungen.",
-    technologies: ["TIA Portal", "Inbetriebnahme", "Support"],
-    // Stock photo until a real project photo is available: Aleksandr Lyaptsev, unsplash.com/photos/q0Jo_J5YxHY
-    image: {
-      src: "https://images.unsplash.com/photo-1753272691001-4d68806ac590?w=2400&q=80&auto=format&fit=crop",
-      alt: "Schaltschrank mit Verdrahtung und Komponenten",
-    },
+    imageSrc:
+      "https://images.unsplash.com/photo-1753272691001-4d68806ac590?w=2400&q=80&auto=format&fit=crop",
   },
-  {
+  // Daniel Miksha, unsplash.com/photos/K-AGcjpmU-c
+  laserPortal: {
     icon: Crosshair,
-    topic: "Programmarchitektur & Motion",
-    title: "Laser-Portal-System",
-    description:
-      "Berechnung und Umsetzung einer Koordinatentransformation zwischen Laserscanner und Portalachsen zur präzisen Positionierung von Werkstücken.",
-    technologies: ["SCL", "Motion", "Lasersensorik"],
-    // Stock photo until a real project photo is available: Daniel Miksha, unsplash.com/photos/K-AGcjpmU-c
-    image: {
-      src: "https://images.unsplash.com/photo-1781330173666-11f8818d6eb2?w=2400&q=80&auto=format&fit=crop",
-      alt: "Reihe komplexer Industriemaschinen in einer modernen Halle",
-    },
+    imageSrc:
+      "https://images.unsplash.com/photo-1781330173666-11f8818d6eb2?w=2400&q=80&auto=format&fit=crop",
   },
-  {
+  // Trans Russia, unsplash.com/photos/4nfPgBofTs4
+  palletInspection: {
     icon: Camera,
-    topic: "Vision & Anlagenintegration",
-    title: "Palettenprüfung",
-    description:
-      "Prüfkonzept zur Bewertung von Paletten mit Kamerasystem und industrieller Bildverarbeitung. Anbindung der Prüfergebnisse an die Steuerung; KI-Auswertung als weiterer Entwicklungsschritt.",
-    technologies: ["Vision-System", "Bildaufnahme", "SPS-Anbindung"],
-    // Stock photo until a real project photo is available: Trans Russia, unsplash.com/photos/4nfPgBofTs4
-    image: {
-      src: "https://images.unsplash.com/photo-1761195696590-3490ea770aa1?w=2400&q=80&auto=format&fit=crop",
-      alt: "Automatisiertes Fördersystem in einem Lager",
-    },
+    imageSrc:
+      "https://images.unsplash.com/photo-1761195696590-3490ea770aa1?w=2400&q=80&auto=format&fit=crop",
   },
-];
+};
+
+export const PROJECT_REFERENCES: ProjectReference[] = (
+  Object.keys(REFERENCE_ASSETS) as ReferenceKey[]
+).map((key) => {
+  const { imageAlt, ...text } = content.references.items[key];
+
+  return {
+    icon: REFERENCE_ASSETS[key].icon,
+    ...text,
+    image: { src: REFERENCE_ASSETS[key].imageSrc, alt: imageAlt },
+  };
+});

@@ -1,5 +1,6 @@
 import Reveal from "@/components/layout/Reveal";
 import { SERVICES } from "@/config/services";
+import content from "@/content/de.json";
 import SectionLayout from "./SectionLayout";
 
 // Separator lines sit between services only; the second service starts the second column from tablet up
@@ -9,10 +10,7 @@ const MOBILE_SEPARATOR_CLASS_NAME = `${SEPARATOR_CLASS_NAME} tablet:hidden`;
 
 export default function ServicesSection() {
   return (
-    <SectionLayout
-      id="leistungen"
-      title={"Steuerung. Bewegung.\nAlles im Zusammenspiel."}
-    >
+    <SectionLayout id="leistungen" title={content.services.title}>
       <div className="grid tablet:grid-cols-2 tablet:gap-x-16">
         {SERVICES.map((service, index) => (
           <article

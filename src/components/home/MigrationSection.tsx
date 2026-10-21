@@ -4,9 +4,9 @@ import type { CSSProperties } from "react";
 import Parallax from "@/components/layout/Parallax";
 import Reveal from "@/components/layout/Reveal";
 import SectionLink from "@/components/layout/SectionLink";
-import { MIGRATION_STEPS } from "@/config/migration-steps";
 import { CONTACT_SECTION_ID } from "@/config/navigation";
 import { MIGRATION_IMAGE_SRC } from "@/config/stock-images";
+import content from "@/content/de.json";
 
 const STEP_DELAY_START_MS = 150;
 const STEP_DELAY_STEP_MS = 70;
@@ -38,43 +38,36 @@ export default function MigrationSection() {
             as="p"
             className="mb-6 animate-reveal-up text-sm font-semibold tracking-[0.12em] text-lime uppercase"
           >
-            Spezialgebiet
+            {content.migration.label}
           </Reveal>
           <Reveal
             as="h2"
             id="migration-title"
             className="animate-reveal-clip text-4xl tablet:text-6xl"
           >
-            Migration Step7 classic
+            {content.migration.titleFrom}
             <ArrowRight
               className="mx-3 inline-block size-[0.8em] align-[-0.08em] text-lime"
               strokeWidth={2.5}
               aria-hidden="true"
             />
-            <span className="sr-only">auf </span>
-            TIA Portal
+            <span className="sr-only">{content.migration.titleConnector} </span>
+            {content.migration.titleTo}
           </Reveal>
           <Reveal
             as="div"
             className="mt-8 max-w-[52ch] animate-reveal-up text-lg font-light text-paper/80 [--delay:120ms] [&_p+p]:mt-4"
           >
-            <p>
-              Für Step7 classic gibt es keinen regulären Support mehr,
-              Ersatzteile für S7-300/400 werden knapp. Bestehende Anlagen werden
-              auf S7-1500 und TIA Portal umgestellt, mit sauber strukturierter
-              Programmarchitektur statt reiner 1:1-Konvertierung.
-            </p>
-            <p>
-              Bestandsaufnahme, Konzept, Programmierung, Umbau im
-              Stillstandsfenster und Inbetriebnahme vor Ort.
-            </p>
+            {content.migration.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </Reveal>
           <Reveal as="div" className="mt-10 animate-reveal-up [--delay:200ms]">
             <SectionLink
               className="group inline-flex w-full items-center justify-between gap-10 rounded-xs bg-lime px-6 py-4 font-semibold text-ink motion-safe:transition-colors hocus:bg-white tablet:w-auto"
               sectionId={CONTACT_SECTION_ID}
             >
-              Migration anfragen
+              {content.migration.cta}
               <ArrowUpRight
                 className="size-6 motion-safe:transition-transform group-hocus:translate-x-0.5 group-hocus:-translate-y-0.5"
                 aria-hidden="true"
@@ -87,10 +80,10 @@ export default function MigrationSection() {
           className="animate-reveal-up rounded-xs border border-paper/15 bg-ink/80 p-6 [--delay:150ms] tablet:p-8"
         >
           <p className="text-sm font-semibold tracking-[0.12em] text-paper/60 uppercase">
-            Migrationsplan
+            {content.migration.planTitle}
           </p>
           <ul className="mt-6">
-            {MIGRATION_STEPS.map((step, index) => (
+            {content.migration.steps.map((step, index) => (
               <Reveal
                 as="li"
                 key={step.from}
@@ -105,7 +98,7 @@ export default function MigrationSection() {
                 <ArrowRight
                   className="size-5 text-lime"
                   strokeWidth={2}
-                  aria-label="wird zu"
+                  aria-label={content.migration.stepArrowLabel}
                 />
                 <span className="font-semibold">{step.to}</span>
               </Reveal>

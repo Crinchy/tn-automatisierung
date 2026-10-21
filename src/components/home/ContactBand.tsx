@@ -1,21 +1,22 @@
 import { Globe, MapPin, MessageCircle } from "lucide-react";
 import TnMark from "@/components/icons/TnMark";
 import Reveal from "@/components/layout/Reveal";
+import content from "@/content/de.json";
 
 const CONTACT_FACTS = [
   {
     icon: MessageCircle,
-    label: "Ein Ansprechpartner, von Anfang bis Ende",
+    label: content.contactBand.facts.singleContact,
     delay: "[--delay:100ms]",
   },
   {
     icon: MapPin,
-    label: "Deutschlandweit im Einsatz",
+    label: content.contactBand.facts.germany,
     delay: "[--delay:200ms]",
   },
   {
     icon: Globe,
-    label: "Für deutsche Kunden auch im Ausland",
+    label: content.contactBand.facts.abroad,
     delay: "[--delay:300ms]",
   },
 ];
@@ -32,17 +33,17 @@ export default function ContactBand() {
           as="h2"
           className="animate-reveal-clip text-4xl tablet:text-6xl"
         >
-          Die Technik ist komplex.
-          <br />
-          Der Kontakt ist direkt.
+          {content.contactBand.titleLines.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
         </Reveal>
         <Reveal
           as="p"
           className="max-w-[44ch] animate-reveal-up text-lg [--delay:150ms]"
         >
-          Sie sprechen mit Tommy Nestmann, vom ersten Gespräch bis zur
-          Inbetriebnahme. Deutschlandweit und für Anlagen deutscher Kunden auch
-          im Ausland.
+          {content.contactBand.text}
         </Reveal>
         <ul className="mt-4 flex flex-col gap-5 border-t border-ink/15 pt-10 tablet:flex-row tablet:flex-wrap tablet:gap-x-12 tablet:gap-y-5 lg:col-span-2 lg:mt-0">
           {CONTACT_FACTS.map((fact) => (

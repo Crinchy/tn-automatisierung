@@ -4,13 +4,11 @@ import SubpageLayout from "@/components/subpage/SubpageLayout";
 import SubpageSection from "@/components/subpage/SubpageSection";
 import { LEGAL_DETAILS } from "@/config/legal";
 import { SHARED_OPEN_GRAPH } from "@/config/site";
-
-const DESCRIPTION =
-  "Impressum und Anbieterkennzeichnung von TN Automatisierung, Tommy Nestmann.";
+import content from "@/content/de.json";
 
 export const metadata: Metadata = {
-  title: "Impressum",
-  description: DESCRIPTION,
+  title: content.imprint.title,
+  description: content.imprint.description,
   robots: { index: false, follow: true },
   alternates: { canonical: "/impressum" },
   openGraph: { ...SHARED_OPEN_GRAPH, url: "/impressum" },
@@ -18,14 +16,15 @@ export const metadata: Metadata = {
 
 export default function ImpressumPage() {
   return (
-    <SubpageLayout title="Impressum" description={DESCRIPTION}>
-      <SubpageSection title="Angaben gemäß § 5 DDG">
+    <SubpageLayout
+      title={content.imprint.title}
+      description={content.imprint.description}
+    >
+      <SubpageSection title={content.imprint.providerHeading}>
         <ContactDetails showAddress />
       </SubpageSection>
-      <SubpageSection title="Umsatzsteuer-ID">
-        <p>
-          Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-        </p>
+      <SubpageSection title={content.imprint.vatHeading}>
+        <p>{content.imprint.vatText}</p>
         <p className="font-semibold">{LEGAL_DETAILS.vatId}</p>
       </SubpageSection>
     </SubpageLayout>

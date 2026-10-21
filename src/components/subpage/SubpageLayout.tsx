@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import TnMark from "@/components/icons/TnMark";
 import PageTransition from "@/components/layout/PageTransition";
+import content from "@/content/de.json";
 import TransitionType from "@/enums/transition-type";
 
 type SubpageLayoutProps = {
@@ -26,7 +27,7 @@ export default function SubpageLayout({
               pathClassName="fill-white"
             />
             <p className="relative mb-8 animate-fade-up text-sm font-normal tracking-[0.12em] uppercase [--delay:50ms] tablet:mb-10">
-              Tommy Nestmann / Industrieautomatisierung
+              {content.business.nameLine}
             </p>
             <h1 className="relative -my-[0.06em] overflow-hidden py-[0.06em] text-[clamp(40px,11vw,64px)] leading-[.88] font-black tracking-[-0.04em] uppercase wrap-break-word tablet:text-[clamp(64px,8vw,112px)]">
               <span className="block animate-line-rise [--delay:150ms]">
@@ -47,7 +48,7 @@ export default function SubpageLayout({
                   strokeWidth={2.25}
                   aria-hidden="true"
                 />
-                Zur Startseite
+                {content.subpage.backToHome}
               </Link>
             </div>
           </div>

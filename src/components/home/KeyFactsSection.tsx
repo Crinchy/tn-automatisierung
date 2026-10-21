@@ -1,17 +1,17 @@
 import type { CSSProperties } from "react";
 import Reveal from "@/components/layout/Reveal";
-import { KEY_FACTS } from "@/config/key-facts";
+import content from "@/content/de.json";
 
 const FACT_DELAY_STEP_MS = 90;
 
 export default function KeyFactsSection() {
   return (
     <section
-      aria-label="Kennzahlen"
+      aria-label={content.keyFacts.label}
       className="wrap pt-16 pb-12 tablet:pt-24 tablet:pb-16 lg:pb-24"
     >
       <dl className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
-        {KEY_FACTS.map((fact, index) => (
+        {content.keyFacts.items.map((fact, index) => (
           <Reveal
             as="div"
             key={fact.label}

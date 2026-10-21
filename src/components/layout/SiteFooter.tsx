@@ -4,22 +4,18 @@ import Link from "next/link";
 import Reveal from "@/components/layout/Reveal";
 import { CONTACT_EMAIL } from "@/config/contact";
 import { LEGAL_DETAILS } from "@/config/legal";
+import { CONTACT_SECTION_ID, SECTION_IDS } from "@/config/navigation";
+import content from "@/content/de.json";
 import TransitionType from "@/enums/transition-type";
 import getCurrentYear from "@/lib/get-current-year";
+import interpolate from "@/utils/interpolate";
 import SectionLink from "./SectionLink";
 
-const FOOTER_LINKS = [
-  {
-    label: "Leistungen",
-    href: "/#leistungen",
-    transitionTypes: [TransitionType.Back],
-  },
-  {
-    label: "Referenzen",
-    href: "/#referenzen",
-    transitionTypes: [TransitionType.Back],
-  },
-];
+const FOOTER_LINKS = SECTION_IDS.map((sectionId) => ({
+  label: content.navigation.sections[sectionId],
+  href: `/#${sectionId}`,
+  transitionTypes: [TransitionType.Back],
+}));
 
 // Phones stack each group as a labelled column; from tablet up both groups sit in one row
 const FOOTER_GROUP_LABEL_CLASS_NAME =
@@ -33,12 +29,12 @@ const FOOTER_LINK_CLASS_NAME =
 
 const LEGAL_LINKS = [
   {
-    label: "Impressum",
+    label: content.navigation.imprint,
     href: "/impressum",
     transitionTypes: [TransitionType.Forward],
   },
   {
-    label: "Datenschutz",
+    label: content.navigation.privacy,
     href: "/datenschutz",
     transitionTypes: [TransitionType.Forward],
   },
@@ -48,7 +44,10 @@ export default async function SiteFooter() {
   const currentYear = await getCurrentYear();
 
   return (
-    <footer id="kontakt" className="relative overflow-clip bg-ink text-paper">
+    <footer
+      id={CONTACT_SECTION_ID}
+      className="relative overflow-clip bg-ink text-paper"
+    >
       <div
         className="pointer-events-none absolute -right-40 -bottom-10 animate-drift h-72 w-160 bg-[url(/tn-wasserzeichen.svg)] bg-contain bg-right-bottom bg-no-repeat opacity-2 tablet:-right-24 tablet:h-112 tablet:w-240"
         aria-hidden="true"
@@ -58,7 +57,7 @@ export default async function SiteFooter() {
           as="h2"
           className="max-w-[12ch] animate-reveal-clip text-5xl tablet:text-7xl lg:text-8xl"
         >
-          Was steht bei Ihnen an?
+          {content.footer.title}
         </Reveal>
         <Reveal
           as="a"
@@ -86,15 +85,17 @@ export default async function SiteFooter() {
             height={131}
           />
           <p className="mt-3 font-light text-paper/70">
-            Industrieautomatisierung · Selbstständig seit 2015
+            {content.business.tagline}
           </p>
         </div>
         <nav
-          aria-label="Footer"
+          aria-label={content.footer.navigationLabel}
           className="grid grid-cols-2 gap-8 tablet:flex tablet:items-center tablet:gap-8"
         >
           <div>
-            <p className={FOOTER_GROUP_LABEL_CLASS_NAME}>Seite</p>
+            <p className={FOOTER_GROUP_LABEL_CLASS_NAME}>
+              {content.footer.siteGroup}
+            </p>
             <ul className={FOOTER_LIST_CLASS_NAME}>
               {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
@@ -110,15 +111,17 @@ export default async function SiteFooter() {
               <li>
                 <SectionLink
                   className={FOOTER_LINK_CLASS_NAME}
-                  sectionId="kontakt"
+                  sectionId={CONTACT_SECTION_ID}
                 >
-                  Kontakt
+                  {content.navigation.contact}
                 </SectionLink>
               </li>
             </ul>
           </div>
           <div className="tablet:border-l tablet:border-paper/25 tablet:pl-8">
-            <p className={FOOTER_GROUP_LABEL_CLASS_NAME}>Rechtliches</p>
+            <p className={FOOTER_GROUP_LABEL_CLASS_NAME}>
+              {content.footer.legalGroup}
+            </p>
             <ul className={FOOTER_LIST_CLASS_NAME}>
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
@@ -137,7 +140,10 @@ export default async function SiteFooter() {
       </Reveal>
       <div className="wrap relative border-t border-paper/10 py-6 text-xs font-light text-paper/70">
         <p>
-          © {currentYear} {LEGAL_DETAILS.businessName}
+          {interpolate(content.footer.copyright, {
+            year: currentYear,
+            businessName: LEGAL_DETAILS.businessName,
+          })}
         </p>
       </div>
     </footer>

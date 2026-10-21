@@ -1,6 +1,4 @@
-export const SECTION_LINKS = [
-  { label: "Leistungen", sectionId: "leistungen" },
-  { label: "Referenzen", sectionId: "referenzen" },
-];
+// Section anchors on the home page, in navigation order; their labels live in content/de.json
+export const SECTION_IDS = ["leistungen", "referenzen"] as const;
 
 export const CONTACT_SECTION_ID = "kontakt";

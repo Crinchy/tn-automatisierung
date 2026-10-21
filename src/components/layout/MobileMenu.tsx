@@ -7,8 +7,9 @@ import { usePathname } from "next/navigation";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import TnMark from "@/components/icons/TnMark";
 import { CONTACT_EMAIL } from "@/config/contact";
-import { CONTACT_SECTION_ID, SECTION_LINKS } from "@/config/navigation";
+import { CONTACT_SECTION_ID } from "@/config/navigation";
 import TransitionType from "@/enums/transition-type";
+import type { MenuLabels, NavigationLink, PageLink } from "@/types/navigation";
 import SectionLink from "./SectionLink";
 
 const MENU_ID = "mobile-menu";
@@ -21,11 +22,6 @@ const MENU_LINK_CLASS_NAME =
 
 const MENU_ITEM_DELAY_START_MS = 80;
 const MENU_ITEM_DELAY_STEP_MS = 60;
-
-const LEGAL_LINKS = [
-  { label: "Impressum", href: "/impressum" },
-  { label: "Datenschutz", href: "/datenschutz" },
-];
 
 function menuItemDelay(index: number): CSSProperties {
   return {
@@ -52,7 +48,19 @@ function unlockScroll() {
   root.style.removeProperty("--scrollbar-compensation");
 }
 
-export default function MobileMenu() {
+type MobileMenuProps = {
+  links: NavigationLink[];
+  legalLinks: PageLink[];
+  labels: MenuLabels;
+  logoAlt: string;
+};
+
+export default function MobileMenu({
+  links,
+  legalLinks,
+  labels,
+  logoAlt,
+}: MobileMenuProps) {
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -101,7 +109,7 @@ export default function MobileMenu() {
       <button
         type="button"
         className="grid size-10 place-items-center rounded-xs bg-ink text-paper motion-safe:transition-colors hocus:bg-white hocus:text-ink group-data-[scrolled=true]/header:hocus:bg-signal group-data-[scrolled=true]/header:hocus:text-paper tablet:hidden"
-        aria-label="Menü öffnen"
+        aria-label={labels.open}
         aria-expanded={isOpen}
         aria-controls={MENU_ID}
         onClick={handleOpen}
@@ -112,7 +120,7 @@ export default function MobileMenu() {
         id={MENU_ID}
         ref={dialogRef}
         tabIndex={-1}
-        aria-label="Menü"
+        aria-label={labels.menu}
         className="m-0 h-dvh max-h-none w-full max-w-none overflow-hidden bg-ink outline-none pr-(--scrollbar-compensation) text-paper selection:bg-lime selection:text-ink backdrop:bg-transparent [clip-path:inset(0_0_100%_0)] open:[clip-path:inset(0)] open:animate-menu-reveal motion-safe:transition-[clip-path,display,overlay] motion-safe:transition-discrete motion-safe:duration-300 motion-safe:ease-in"
         onClose={handleDialogClose}
       >
@@ -126,25 +134,25 @@ export default function MobileMenu() {
               draggable={false}
               className="block h-auto w-36 brightness-0 invert"
               src="/logo.svg"
-              alt="Nestmann Automatisierung"
+              alt={logoAlt}
               width={708}
               height={131}
             />
             <button
               type="button"
               className="grid size-10 place-items-center rounded-xs bg-signal text-white motion-safe:transition-colors hocus:bg-lime hocus:text-ink"
-              aria-label="Menü schließen"
+              aria-label={labels.close}
               onClick={handleNavigate}
             >
               <X className="size-5" strokeWidth={2} aria-hidden="true" />
             </button>
           </div>
           <nav
-            aria-label="Menü"
+            aria-label={labels.menu}
             className="wrap relative flex flex-1 flex-col justify-center"
           >
             <ul className="border-t border-paper/15">
-              {SECTION_LINKS.map((link, index) => (
+              {links.map((link, index) => (
                 <li
                   key={link.sectionId}
                   className="animate-fade-up border-b border-paper/15"
@@ -172,14 +180,14 @@ export default function MobileMenu() {
               ))}
               <li
                 className="animate-fade-up border-b border-paper/15"
-                style={menuItemDelay(SECTION_LINKS.length)}
+                style={menuItemDelay(links.length)}
               >
                 <SectionLink
                   className={`${MENU_LINK_CLASS_NAME} text-lime hocus:text-paper`}
                   sectionId={CONTACT_SECTION_ID}
                   onClick={handleNavigate}
                 >
-                  Kontakt
+                  {labels.contact}
                 </SectionLink>
               </li>
             </ul>
@@ -196,7 +204,7 @@ export default function MobileMenu() {
               />
             </a>
             <ul className="flex gap-6 text-paper/75">
-              {LEGAL_LINKS.map((link) => (
+              {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     className="underline decoration-transparent decoration-2 underline-offset-6 motion-safe:transition-colors hocus:text-paper hocus:decoration-lime"

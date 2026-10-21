@@ -1,24 +1,37 @@
 import { ArrowUpRight, Cpu, Factory } from "lucide-react";
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import TnMark from "@/components/icons/TnMark";
 import Parallax from "@/components/layout/Parallax";
 import SectionLink from "@/components/layout/SectionLink";
 import { HERO_IMAGE_SRC } from "@/config/stock-images";
+import content from "@/content/de.json";
 
 const FOCUS_AREAS = [
   {
     icon: Cpu,
-    label: "TIA Portal / Programmarchitektur",
+    label: content.hero.focusAreas.programming,
     delay: "[--delay:750ms]",
   },
-  { icon: Factory, label: "Sondermaschinenbau", delay: "[--delay:850ms]" },
+  {
+    icon: Factory,
+    label: content.hero.focusAreas.specialMachines,
+    delay: "[--delay:850ms]",
+  },
 ];
 
-const HEADLINE_LINES = [
-  { text: "GUTE LOGIK.", className: "[--delay:150ms]" },
-  { text: "STARKE", className: "[--delay:260ms]" },
-  { text: "MASCHINEN.", className: "text-signal-light [--delay:370ms]" },
-];
+const HEADLINE_LINE_DELAY_START_MS = 150;
+const HEADLINE_LINE_DELAY_STEP_MS = 110;
+
+// The last headline line is highlighted
+const HEADLINE_LINE_CLASS_NAME = "block animate-line-rise";
+const HIGHLIGHTED_HEADLINE_LINE_CLASS_NAME = `${HEADLINE_LINE_CLASS_NAME} text-signal-light`;
+
+function headlineLineDelay(index: number): CSSProperties {
+  return {
+    "--delay": `${HEADLINE_LINE_DELAY_START_MS + index * HEADLINE_LINE_DELAY_STEP_MS}ms`,
+  } as CSSProperties;
+}
 
 export default function Hero() {
   return (
@@ -46,31 +59,36 @@ export default function Hero() {
           pathClassName="fill-white animate-mark-draw"
         />
         <p className="relative mb-6 animate-fade-up text-sm font-light tracking-[0.12em] uppercase [--delay:50ms] tablet:mb-10">
-          Tommy Nestmann / Industrieautomatisierung
+          {content.business.nameLine}
         </p>
         <h1 className="relative text-[clamp(40px,13vw,69px)] leading-[.88] font-black tracking-[-0.04em] tablet:text-[clamp(70px,9.9vw,142px)]">
-          {HEADLINE_LINES.map((line) => (
+          {content.hero.headlineLines.map((line, index, lines) => (
             <span
-              key={line.text}
+              key={line}
               className="-my-[0.06em] block overflow-hidden py-[0.06em]"
             >
-              <span className={`block animate-line-rise ${line.className}`}>
-                {line.text}
+              <span
+                className={
+                  index === lines.length - 1
+                    ? HIGHLIGHTED_HEADLINE_LINE_CLASS_NAME
+                    : HEADLINE_LINE_CLASS_NAME
+                }
+                style={headlineLineDelay(index)}
+              >
+                {line}
               </span>
             </span>
           ))}
         </h1>
         <div className="relative mt-10 grid animate-fade-up gap-6 border-t border-white/30 pt-8 [--delay:600ms] tablet:mt-24 tablet:gap-8 tablet:pt-10 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12">
           <p className="max-w-[46ch] text-base font-light tablet:text-lg">
-            TIA Portal, klare Programmarchitektur und das Zusammenspiel von
-            Steuerung, Vision-Systemen und Robotern. Von der neuen Anlage bis
-            zum Retrofit.
+            {content.hero.intro}
           </p>
           <SectionLink
             className="group inline-flex items-center justify-between gap-6 justify-self-start rounded-xs bg-lime px-5 py-3 text-[15px] font-semibold text-ink motion-safe:transition-colors hocus:bg-white tablet:gap-10 tablet:px-6 tablet:py-4 tablet:text-base"
             sectionId="kontakt"
           >
-            Projekt besprechen
+            {content.hero.cta}
             <ArrowUpRight
               className="size-4 motion-safe:transition-transform group-hocus:translate-x-0.5 group-hocus:-translate-y-0.5 tablet:size-6"
               aria-hidden="true"

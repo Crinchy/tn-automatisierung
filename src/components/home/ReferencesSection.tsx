@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Parallax from "@/components/layout/Parallax";
 import Reveal from "@/components/layout/Reveal";
 import { PROJECT_REFERENCES } from "@/config/project-references";
+import content from "@/content/de.json";
 
 const TAG_DELAY_START_MS = 250;
 const TAG_DELAY_STEP_MS = 80;
@@ -15,7 +16,7 @@ export default function ReferencesSection() {
           as="h2"
           className="animate-reveal-clip text-4xl whitespace-pre-line tablet:text-6xl"
         >
-          {"Aufgaben aus\nder Praxis."}
+          {content.references.title}
         </Reveal>
         <div
           className="mt-12 h-0.5 animate-rule-draw bg-ink"

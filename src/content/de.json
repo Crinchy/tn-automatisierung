@@ -1,0 +1,196 @@
+{
+  "site": {
+    "name": "TN Automatisierung",
+    "tagline": "Gute Logik. Starke Maschinen.",
+    "description": "SPS-Programmierung mit TIA Portal, Retrofit, Vision-Systeme und Roboterintegration von Tommy Nestmann. Inbetriebnahme deutschlandweit und im Ausland.",
+    "category": "Industrieautomatisierung",
+    "keywords": [
+      "Industrieautomatisierung",
+      "SPS-Programmierung",
+      "TIA Portal",
+      "Programmarchitektur",
+      "Retrofit",
+      "S7-300",
+      "S7-400",
+      "Vision-Systeme",
+      "Bildverarbeitung",
+      "Roboterintegration",
+      "Inbetriebnahme",
+      "Sondermaschinenbau"
+    ]
+  },
+  "business": {
+    "ownerName": "Tommy Nestmann",
+    "businessName": "Nestmann Automatisierung",
+    "nameLine": "Tommy Nestmann / Industrieautomatisierung",
+    "tagline": "Industrieautomatisierung · Selbstständig seit 2015"
+  },
+  "legalDetails": {
+    "street": "[Straße und Hausnummer]",
+    "postalCodeAndCity": "[PLZ und Ort]",
+    "phone": "[Telefonnummer]",
+    "vatId": "[USt-IdNr. oder Abschnitt entfernen]"
+  },
+  "navigation": {
+    "label": "Hauptnavigation",
+    "sections": {
+      "leistungen": "Leistungen",
+      "referenzen": "Referenzen"
+    },
+    "contact": "Kontakt",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz"
+  },
+  "menu": {
+    "label": "Menü",
+    "open": "Menü öffnen",
+    "close": "Menü schließen"
+  },
+  "hero": {
+    "headlineLines": ["GUTE LOGIK.", "STARKE", "MASCHINEN."],
+    "intro": "TIA Portal, klare Programmarchitektur und das Zusammenspiel von Steuerung, Vision-Systemen und Robotern. Von der neuen Anlage bis zum Retrofit.",
+    "cta": "Projekt besprechen",
+    "focusAreas": {
+      "programming": "TIA Portal / Programmarchitektur",
+      "specialMachines": "Sondermaschinenbau"
+    }
+  },
+  "keyFacts": {
+    "label": "Kennzahlen",
+    "items": [
+      { "value": "25+", "label": "Jahre Erfahrung" },
+      { "value": "2015", "label": "Selbstständig seit" },
+      { "value": "E + IT", "label": "Doppelqualifikation" },
+      { "value": "DE", "label": "+ weltweite Einsätze" }
+    ]
+  },
+  "services": {
+    "title": "Steuerung. Bewegung.\nAlles im Zusammenspiel.",
+    "items": {
+      "tiaPortal": {
+        "label": "TIA Portal",
+        "title": "Software für\nIhre Maschine.",
+        "description": "Ablaufsteuerung und Schnittstellen mit TIA Portal. Von der Programmierung bis zur Inbetriebnahme."
+      },
+      "programArchitecture": {
+        "label": "Programmarchitektur",
+        "title": "Struktur, die\nmitwachsen kann.",
+        "description": "Modulare Bausteine, klare Zuständigkeiten und nachvollziehbare Abläufe als Grundlage für neue Projekte und Erweiterungen."
+      },
+      "retrofit": {
+        "label": "Retrofit",
+        "title": "Bewährtes\nweiterentwickeln.",
+        "description": "Bestehende Anlagen modernisieren. Bei Bedarf von Step7 classic und S7-300/400 auf eine aktuelle Steuerung mit TIA Portal wechseln."
+      },
+      "visionSystems": {
+        "label": "Vision-Systeme",
+        "title": "Sehen. Prüfen.\nWeiterverarbeiten.",
+        "description": "Industrielle Bildverarbeitung in den Maschinenablauf einbinden. Prüfergebnisse und Positionsdaten mit der Steuerung austauschen."
+      },
+      "robots": {
+        "label": "Roboter",
+        "title": "Bewegung im\nZusammenspiel.",
+        "description": "Roboter in den Anlagenablauf integrieren. Kommunikation, Freigaben und Übergaben zwischen Roboter und Steuerung abstimmen."
+      },
+      "commissioning": {
+        "label": "Inbetriebnahme",
+        "title": "An der Anlage\nzusammenführen.",
+        "description": "Steuerung, Antriebe, Vision-Systeme und Roboter gemeinsam testen und Abläufe vor Ort in Betrieb nehmen."
+      }
+    }
+  },
+  "migration": {
+    "label": "Spezialgebiet",
+    "titleFrom": "Migration Step7 classic",
+    "titleConnector": "auf",
+    "titleTo": "TIA Portal",
+    "paragraphs": [
+      "Für Step7 classic gibt es keinen regulären Support mehr, Ersatzteile für S7-300/400 werden knapp. Bestehende Anlagen werden auf S7-1500 und TIA Portal umgestellt, mit sauber strukturierter Programmarchitektur statt reiner 1:1-Konvertierung.",
+      "Bestandsaufnahme, Konzept, Programmierung, Umbau im Stillstandsfenster und Inbetriebnahme vor Ort."
+    ],
+    "cta": "Migration anfragen",
+    "planTitle": "Migrationsplan",
+    "stepArrowLabel": "wird zu",
+    "steps": [
+      { "from": "S7-300 / Step7 classic", "to": "S7-1500 / TIA" },
+      { "from": "AWL / unstrukturiert", "to": "SCL / FUP strukturiert" },
+      { "from": "WinCC flexible", "to": "WinCC Unified" },
+      { "from": "Profibus DP", "to": "Profinet IO" },
+      { "from": "Klassische F-CPU", "to": "F-CPU 1500" }
+    ]
+  },
+  "references": {
+    "title": "Aufgaben aus\nder Praxis.",
+    "items": {
+      "colorist": {
+        "topic": "Inbetriebnahme & Betreuung",
+        "title": "Colorist-Anlage USA",
+        "description": "Inbetriebnahme, Fehlersuche und Optimierung einer Colorist-Anlage in den USA. Anschließender Remote-Support bei Anpassungen und Erweiterungen.",
+        "technologies": ["TIA Portal", "Inbetriebnahme", "Support"],
+        "imageAlt": "Schaltschrank mit Verdrahtung und Komponenten"
+      },
+      "laserPortal": {
+        "topic": "Programmarchitektur & Motion",
+        "title": "Laser-Portal-System",
+        "description": "Berechnung und Umsetzung einer Koordinatentransformation zwischen Laserscanner und Portalachsen zur präzisen Positionierung von Werkstücken.",
+        "technologies": ["SCL", "Motion", "Lasersensorik"],
+        "imageAlt": "Reihe komplexer Industriemaschinen in einer modernen Halle"
+      },
+      "palletInspection": {
+        "topic": "Vision & Anlagenintegration",
+        "title": "Palettenprüfung",
+        "description": "Prüfkonzept zur Bewertung von Paletten mit Kamerasystem und industrieller Bildverarbeitung. Anbindung der Prüfergebnisse an die Steuerung; KI-Auswertung als weiterer Entwicklungsschritt.",
+        "technologies": ["Vision-System", "Bildaufnahme", "SPS-Anbindung"],
+        "imageAlt": "Automatisiertes Fördersystem in einem Lager"
+      }
+    }
+  },
+  "contactBand": {
+    "titleLines": ["Die Technik ist komplex.", "Der Kontakt ist direkt."],
+    "text": "Sie sprechen mit Tommy Nestmann, vom ersten Gespräch bis zur Inbetriebnahme. Deutschlandweit und für Anlagen deutscher Kunden auch im Ausland.",
+    "facts": {
+      "singleContact": "Ein Ansprechpartner, von Anfang bis Ende",
+      "germany": "Deutschlandweit im Einsatz",
+      "abroad": "Für deutsche Kunden auch im Ausland"
+    }
+  },
+  "footer": {
+    "title": "Was steht bei Ihnen an?",
+    "navigationLabel": "Footer",
+    "siteGroup": "Seite",
+    "legalGroup": "Rechtliches",
+    "copyright": "© {year} {businessName}"
+  },
+  "subpage": {
+    "backToHome": "Zur Startseite"
+  },
+  "contactDetails": {
+    "address": "Anschrift",
+    "phone": "Telefon",
+    "email": "E-Mail"
+  },
+  "imprint": {
+    "title": "Impressum",
+    "description": "Impressum und Anbieterkennzeichnung von TN Automatisierung, Tommy Nestmann.",
+    "providerHeading": "Angaben gemäß § 5 DDG",
+    "vatHeading": "Umsatzsteuer-ID",
+    "vatText": "Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:"
+  },
+  "privacy": {
+    "title": "Datenschutz",
+    "description": "Datenschutzerklärung von TN Automatisierung, Tommy Nestmann.",
+    "controllerHeading": "Verantwortlicher",
+    "policyHeading": "Datenschutzerklärung",
+    "policyText": "[Datenschutzerklärung hier einfügen, zum Beispiel aus dem Generator von eRecht24 oder Dr. Schwenke]"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Diese Seite gibt es nicht oder nicht mehr."
+  },
+  "structuredData": {
+    "areaServed": "Deutschland"
+  },
+  "openGraphImage": {
+    "alt": "TN Automatisierung: Gute Logik. Starke Maschinen. Tommy Nestmann, Industrieautomatisierung."
+  }
+}

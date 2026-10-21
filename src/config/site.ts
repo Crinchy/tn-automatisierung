@@ -1,11 +1,13 @@
-export const SITE_URL = "https://tn-automatisierung.lukas-buettner.workers.dev";
+import content from "@/content/de.json";
 
-export const SITE_NAME = "TN Automatisierung";
+export const SITE_URL =
+  "https://tn-automatisierung.lukas-buettner.workers.dev/";
 
-export const SITE_TAGLINE = "Gute Logik. Starke Maschinen.";
+export const SITE_NAME = content.site.name;
 
-export const SITE_DESCRIPTION =
-  "SPS-Programmierung mit TIA Portal, Retrofit, Vision-Systeme und Roboterintegration von Tommy Nestmann. Inbetriebnahme deutschlandweit und im Ausland.";
+export const SITE_TAGLINE = content.site.tagline;
+
+export const SITE_DESCRIPTION = content.site.description;
 
 export const THEME_COLOR = "#3572c2";
 
@@ -14,4 +16,10 @@ export const SHARED_OPEN_GRAPH = {
   type: "website",
   locale: "de_DE",
   siteName: SITE_NAME,
+  images: {
+    url: "/opengraph-image.png",
+    width: 1200,
+    height: 630,
+    alt: content.openGraphImage.alt,
+  },
 } as const;
