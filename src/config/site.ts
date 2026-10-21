@@ -5,6 +5,8 @@ export const SITE_URL =
 
 export const SITE_NAME = content.site.name;
 
+const SITE_HOST = new URL(SITE_URL).host;
+
 export const SITE_TAGLINE = content.site.tagline;
 
 export const SITE_DESCRIPTION = content.site.description;
@@ -15,7 +17,7 @@ export const THEME_COLOR = "#3572c2";
 export const SHARED_OPEN_GRAPH = {
   type: "website",
   locale: "de_DE",
-  siteName: SITE_NAME,
+  siteName: SITE_HOST,
   images: {
     url: "/opengraph-image.png",
     width: 1200,
