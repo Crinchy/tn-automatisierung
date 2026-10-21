@@ -17,7 +17,7 @@ export default function HeaderShell({ children }: HeaderShellProps) {
       data-scrolled={hasScrolled}
       // Anchors the header while page content slides during view transitions
       style={{ viewTransitionName: "site-header" }}
-      className="group/header fixed inset-x-0 top-0 z-50 pr-(--scrollbar-compensation) border-b border-transparent text-white selection:bg-lime selection:text-ink motion-safe:transition-[background-color,border-color,box-shadow,color] motion-safe:duration-300 data-[scrolled=true]:border-rule data-[scrolled=true]:bg-white data-[scrolled=true]:text-ink data-[scrolled=true]:shadow-[0_10px_24px_-18px_rgb(21_44_67/0.45)]"
+      className="group/header fixed inset-x-0 top-0 z-50 animate-header-scrolled pr-(--scrollbar-compensation) border-b border-transparent text-white selection:bg-lime selection:text-ink motion-safe:transition-[background-color,border-color,box-shadow,color] motion-safe:duration-300 data-[scrolled=true]:border-rule data-[scrolled=true]:bg-white data-[scrolled=true]:text-ink data-[scrolled=true]:shadow-[0_10px_24px_-18px_rgb(21_44_67/0.45)]"
     >
       {children}
     </header>

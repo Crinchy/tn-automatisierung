@@ -79,6 +79,9 @@ export default function MobileMenu() {
   function handleOpen() {
     lockScroll();
     dialogRef.current?.showModal();
+    // showModal focuses the close button, which some mobile browsers treat as focus-visible after a tap;
+    // focusing the dialog itself keeps the outline for keyboard use, where Tab reaches the close button next
+    dialogRef.current?.focus();
     setIsOpen(true);
   }
 
@@ -108,8 +111,9 @@ export default function MobileMenu() {
       <dialog
         id={MENU_ID}
         ref={dialogRef}
+        tabIndex={-1}
         aria-label="Menü"
-        className="m-0 h-dvh max-h-none w-full max-w-none overflow-hidden bg-ink pr-(--scrollbar-compensation) text-paper selection:bg-lime selection:text-ink backdrop:bg-transparent [clip-path:inset(0_0_100%_0)] open:[clip-path:inset(0)] open:animate-menu-reveal motion-safe:transition-[clip-path,display,overlay] motion-safe:transition-discrete motion-safe:duration-300 motion-safe:ease-in"
+        className="m-0 h-dvh max-h-none w-full max-w-none overflow-hidden bg-ink outline-none pr-(--scrollbar-compensation) text-paper selection:bg-lime selection:text-ink backdrop:bg-transparent [clip-path:inset(0_0_100%_0)] open:[clip-path:inset(0)] open:animate-menu-reveal motion-safe:transition-[clip-path,display,overlay] motion-safe:transition-discrete motion-safe:duration-300 motion-safe:ease-in"
         onClose={handleDialogClose}
       >
         <div className="relative flex h-full flex-col">

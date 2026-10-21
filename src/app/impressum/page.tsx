@@ -3,6 +3,7 @@ import ContactDetails from "@/components/subpage/ContactDetails";
 import SubpageLayout from "@/components/subpage/SubpageLayout";
 import SubpageSection from "@/components/subpage/SubpageSection";
 import { LEGAL_DETAILS } from "@/config/legal";
+import { SHARED_OPEN_GRAPH } from "@/config/site";
 
 const DESCRIPTION =
   "Impressum und Anbieterkennzeichnung von TN Automatisierung, Tommy Nestmann.";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   robots: { index: false, follow: true },
   alternates: { canonical: "/impressum" },
+  openGraph: { ...SHARED_OPEN_GRAPH, url: "/impressum" },
 };
 
 export default function ImpressumPage() {

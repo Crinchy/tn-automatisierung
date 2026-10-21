@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
-@custom-variant hocus (&:hover,
-&:focus-visible);
+/* Hover only on devices that can hover, like Tailwind's hover:, so tapped controls do not stay highlighted */
+@custom-variant hocus {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+
+  &:focus-visible {
+    @slot;
+  }
+}
 
 @theme {
   --breakpoint-tablet: 43.8125rem;
@@ -24,7 +34,7 @@
   margin-inline: auto;
 
   @variant tablet {
-    width: min(1200px, calc(100% - 80px));
+    width: min(1320px, calc(100% - 80px));
   }
 }
 
@@ -224,6 +234,69 @@
 }
 
 /* Draws a section's top rule as it scrolls into view */
+/*
+ * The header's scrolled look, driven by the scroll position itself so the first paint is already correct
+ * after a reload further down the page. Browsers without scroll timelines keep the data-scrolled styles.
+ */
+@keyframes header-scrolled {
+  to {
+    background-color: white;
+    border-color: var(--color-rule);
+    box-shadow: 0 10px 24px -18px rgb(21 44 67 / 0.45);
+    color: var(--color-ink);
+  }
+}
+
+@keyframes header-logo-scrolled {
+  from {
+    filter: brightness(0) invert(1);
+  }
+
+  to {
+    filter: none;
+  }
+}
+
+@keyframes header-divider-scrolled {
+  from {
+    border-color: rgb(255 255 255 / 0.3);
+  }
+
+  to {
+    border-color: var(--color-rule);
+  }
+}
+
+@utility animate-header-scrolled {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      animation: header-scrolled linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
+    }
+  }
+}
+
+@utility animate-header-logo-scrolled {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      animation: header-logo-scrolled linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
+    }
+  }
+}
+
+@utility animate-header-divider-scrolled {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      animation: header-divider-scrolled linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
+    }
+  }
+}
+
 @utility animate-rule-draw {
   transform-origin: left;
 
@@ -284,6 +357,8 @@
   a,
   button {
     touch-action: manipulation;
+    /* The site styles its own pressed and focus states, so the grey mobile tap overlay is redundant */
+    -webkit-tap-highlight-color: transparent;
   }
 
   a[href],

@@ -22,7 +22,7 @@ const CONTACT_FACTS = [
 
 export default function ContactBand() {
   return (
-    <section className="relative overflow-hidden bg-lime-soft">
+    <section className="relative overflow-clip bg-lime-soft">
       <TnMark
         className="pointer-events-none absolute -top-10 -right-48 h-80 w-180 animate-drift opacity-6 tablet:-right-32 tablet:h-112 tablet:w-256"
         pathClassName="fill-ink"

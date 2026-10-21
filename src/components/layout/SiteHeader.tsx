@@ -11,7 +11,7 @@ export default function SiteHeader() {
         <HomeLink className="shrink-0">
           <Image
             draggable={false}
-            className="block h-auto w-36 brightness-0 invert group-data-[scrolled=true]/header:filter-none motion-safe:transition-[filter] motion-safe:duration-300 tablet:w-52"
+            className="block h-auto w-36 animate-header-logo-scrolled brightness-0 invert group-data-[scrolled=true]/header:filter-none motion-safe:transition-[filter] motion-safe:duration-300 tablet:w-52"
             src="/logo.svg"
             alt="Nestmann Automatisierung"
             width={708}

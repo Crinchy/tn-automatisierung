@@ -2,18 +2,33 @@ import Reveal from "@/components/layout/Reveal";
 import { SERVICES } from "@/config/services";
 import SectionLayout from "./SectionLayout";
 
+// Separator lines sit between services only; the second service starts the second column from tablet up
+const SEPARATOR_CLASS_NAME =
+  "absolute inset-x-0 top-0 h-px animate-rule-draw bg-rule";
+const MOBILE_SEPARATOR_CLASS_NAME = `${SEPARATOR_CLASS_NAME} tablet:hidden`;
+
 export default function ServicesSection() {
   return (
     <SectionLayout
       id="leistungen"
       title={"Steuerung. Bewegung.\nAlles im Zusammenspiel."}
     >
-      <div className="grid tablet:grid-cols-2">
-        {SERVICES.map((service) => (
+      <div className="grid tablet:grid-cols-2 tablet:gap-x-16">
+        {SERVICES.map((service, index) => (
           <article
             key={service.label}
-            className="border-b border-rule py-12 tablet:py-14 tablet:odd:pr-12 tablet:even:border-l tablet:even:pl-12"
+            className="relative min-w-0 py-12 tablet:py-14"
           >
+            {index > 0 && (
+              <div
+                className={
+                  index === 1
+                    ? MOBILE_SEPARATOR_CLASS_NAME
+                    : SEPARATOR_CLASS_NAME
+                }
+                aria-hidden="true"
+              />
+            )}
             <Reveal
               as="div"
               className="flex animate-reveal-up items-center gap-4"

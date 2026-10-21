@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import ContactBand from "@/components/home/ContactBand";
 import Hero from "@/components/home/Hero";
+import KeyFactsSection from "@/components/home/KeyFactsSection";
+import MigrationSection from "@/components/home/MigrationSection";
 import ReferencesSection from "@/components/home/ReferencesSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import StructuredData from "@/components/home/StructuredData";
@@ -18,7 +20,9 @@ export default function Home() {
       <main>
         <StructuredData />
         <Hero />
+        <KeyFactsSection />
         <ServicesSection />
+        <MigrationSection />
         <ReferencesSection />
         <ContactBand />
       </main>

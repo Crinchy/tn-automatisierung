@@ -29,7 +29,7 @@ export default function NavigationLinks() {
           </Link>
         </li>
       ))}
-      <li className="hidden min-[420px]:block lg:border-l lg:border-white/30 lg:pl-8 lg:group-data-[scrolled=true]/header:border-rule">
+      <li className="hidden animate-header-divider-scrolled min-[420px]:block lg:border-l lg:border-white/30 lg:pl-8 lg:group-data-[scrolled=true]/header:border-rule">
         <SectionLink
           className="group inline-flex items-center gap-2 rounded-xs bg-ink px-4 py-2.5 text-sm text-paper motion-safe:transition-colors hocus:bg-white hocus:text-ink group-data-[scrolled=true]/header:hocus:bg-signal group-data-[scrolled=true]/header:hocus:text-paper aria-[current=true]:bg-signal aria-[current=true]:text-paper"
           sectionId={CONTACT_SECTION_ID}

@@ -5,6 +5,7 @@ import Reveal from "@/components/layout/Reveal";
 import { CONTACT_EMAIL } from "@/config/contact";
 import { LEGAL_DETAILS } from "@/config/legal";
 import TransitionType from "@/enums/transition-type";
+import getCurrentYear from "@/lib/get-current-year";
 import SectionLink from "./SectionLink";
 
 const FOOTER_LINKS = [
@@ -22,7 +23,7 @@ const FOOTER_LINKS = [
 
 // Phones stack each group as a labelled column; from tablet up both groups sit in one row
 const FOOTER_GROUP_LABEL_CLASS_NAME =
-  "mb-3 text-xs font-semibold tracking-[0.12em] text-paper/45 uppercase tablet:sr-only";
+  "mb-3 text-xs font-semibold tracking-[0.12em] text-paper/60 uppercase tablet:sr-only";
 
 const FOOTER_LIST_CLASS_NAME =
   "grid gap-1 text-[15px] text-paper/75 tablet:flex tablet:gap-8 tablet:text-sm";
@@ -43,9 +44,11 @@ const LEGAL_LINKS = [
   },
 ];
 
-export default function SiteFooter() {
+export default async function SiteFooter() {
+  const currentYear = await getCurrentYear();
+
   return (
-    <footer id="kontakt" className="relative overflow-hidden bg-ink text-paper">
+    <footer id="kontakt" className="relative overflow-clip bg-ink text-paper">
       <div
         className="pointer-events-none absolute -right-40 -bottom-10 animate-drift h-72 w-160 bg-[url(/tn-wasserzeichen.svg)] bg-contain bg-right-bottom bg-no-repeat opacity-2 tablet:-right-24 tablet:h-112 tablet:w-240"
         aria-hidden="true"
@@ -59,7 +62,7 @@ export default function SiteFooter() {
         </Reveal>
         <Reveal
           as="a"
-          className="group mt-12 inline-flex max-w-full animate-reveal-up items-center [--delay:150ms] gap-4 border-b-2 border-lime pb-2 text-2xl font-semibold wrap-anywhere motion-safe:transition-colors hocus:text-lime tablet:mt-16 tablet:gap-6 tablet:text-4xl"
+          className="group mt-12 inline-flex max-w-full animate-reveal-up items-center [--delay:150ms] gap-3 border-b-2 border-lime pb-2 text-[clamp(17px,5.2vw,24px)] font-semibold wrap-anywhere motion-safe:transition-colors hocus:text-lime tablet:mt-16 tablet:gap-6 tablet:text-4xl"
           href={`mailto:${CONTACT_EMAIL}`}
         >
           {CONTACT_EMAIL}
@@ -82,7 +85,7 @@ export default function SiteFooter() {
             width={708}
             height={131}
           />
-          <p className="mt-3 font-light text-paper/60">
+          <p className="mt-3 font-light text-paper/70">
             Industrieautomatisierung · Selbstständig seit 2015
           </p>
         </div>
@@ -132,6 +135,11 @@ export default function SiteFooter() {
           </div>
         </nav>
       </Reveal>
+      <div className="wrap relative border-t border-paper/10 py-6 text-xs font-light text-paper/70">
+        <p>
+          © {currentYear} {LEGAL_DETAILS.businessName}
+        </p>
+      </div>
     </footer>
   );
 }

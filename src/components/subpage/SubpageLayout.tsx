@@ -20,9 +20,9 @@ export default function SubpageLayout({
     <PageTransition>
       <main>
         <section className="overflow-hidden bg-signal text-white selection:bg-lime selection:text-ink">
-          <div className="wrap relative pt-38 pb-12 tablet:pt-52 tablet:pb-16">
+          <div className="wrap relative pt-28 pb-10 tablet:pt-52 tablet:pb-16">
             <TnMark
-              className="pointer-events-none absolute top-36 -right-32 h-56 w-96 opacity-12 tablet:top-32 tablet:-right-20 tablet:h-90 tablet:w-160"
+              className="pointer-events-none absolute top-26 -right-32 h-56 w-96 opacity-12 tablet:top-32 tablet:-right-20 tablet:h-90 tablet:w-160"
               pathClassName="fill-white"
             />
             <p className="relative mb-8 animate-fade-up text-sm font-normal tracking-[0.12em] uppercase [--delay:50ms] tablet:mb-10">
@@ -33,10 +33,12 @@ export default function SubpageLayout({
                 {title}
               </span>
             </h1>
-            <div className="relative mt-14 grid animate-fade-up gap-8 border-t border-white/30 pt-10 [--delay:400ms] tablet:mt-20 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12">
-              <p className="max-w-[46ch] text-lg">{description}</p>
+            <div className="relative mt-10 grid animate-fade-up gap-6 border-t border-white/30 pt-8 [--delay:400ms] tablet:mt-20 tablet:gap-8 tablet:pt-10 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12">
+              <p className="max-w-[46ch] text-base tablet:text-lg">
+                {description}
+              </p>
               <Link
-                className="group inline-flex items-center gap-10 justify-self-start rounded-xs bg-lime px-6 py-4 font-semibold text-ink motion-safe:transition-colors hocus:bg-white"
+                className="group inline-flex items-center justify-between gap-10 justify-self-stretch rounded-xs bg-lime tablet:justify-self-start px-6 py-4 font-semibold text-ink motion-safe:transition-colors hocus:bg-white"
                 href="/"
                 transitionTypes={[TransitionType.Back]}
               >
